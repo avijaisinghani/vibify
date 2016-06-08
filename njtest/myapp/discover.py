@@ -79,7 +79,7 @@ def post_playlist(environ):
    "name":"Hello World",
    "public": 'false'
   }
-  resp=requests.post(url, headers=headers, json=body)
+  resp=requests.post(url, headers=headers, data=json.dumps(body))
   response=json.loads(resp.text)
   newlisturl = (response['href'])
   newlistredirect = (response['external_urls']['spotify'])
