@@ -87,6 +87,7 @@ def post_playlist(environ):
 
 
    #use new playlist url to post tracks to new playlist.
+  user = args['user'][0]
   con.text_factory = str #returns cursor results in string
   cursor.execute ('select uri, camelot_key, rank, tempo from tracks where user = user group by camelot_key, tempo order by mode desc')
   rows = cursor.fetchall()
@@ -99,8 +100,6 @@ def post_playlist(environ):
        #print (response2)
   #print(tracklist)
   #print(rows)
-  
-
   location_json = {
     'location': newlistredirect
   }
