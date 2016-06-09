@@ -88,7 +88,7 @@ def post_playlist(environ):
 
    #use new playlist url to post tracks to new playlist.
   con.text_factory = str #returns cursor results in string
-  cursor.execute ('select uri, camelot_key, rank, tempo from tracks group by camelot_key, tempo order by mode desc where user = user')
+  cursor.execute ('select uri, camelot_key, rank, tempo from tracks group by camelot_key, tempo where user = user order by mode desc')
   rows = cursor.fetchall()
   uris= [row[0] for row in rows] #converts cursor query results to list
   for uri in uris:
