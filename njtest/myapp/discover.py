@@ -8,7 +8,7 @@ import urllib
 spotify_api = 'TCLQLMNCNHHGKWDSI'
 # access_token = "BQAmGRxb2r_GYnnb7x-_NGbNsyu2M8q1LgsMgXa62vgm2MSYNlBfRTMOecvrg30FfktzNfpKpOaGkhlPx6UVxLF-qdfNizIumvM1IeczQ6kYcWXZSLvqK5LnyZR4bsOCkgP3ElhuOqfcRUolJwAgPNl6o2cV32yIxhhdKqZdzJhfGC2mY2PpsxJkexsjt2j8FCjGQm47bnUMjyOSracnkFOa5ALUO56bHke8a507EsqrzE4wM-Giz0etX22DQ30fmff5ylJv"
 # headers = {'Authorization' : 'Bearer ' + access_token}
-#user = "forplay.tumblr"
+
 
 
 
@@ -88,7 +88,7 @@ def post_playlist(environ):
 
    #use new playlist url to post tracks to new playlist.
   con.text_factory = str #returns cursor results in string
-  cursor.execute ('select uri, camelot_key, rank, tempo from tracks group by camelot_key, tempo order by mode desc')
+  cursor.execute ('select uri, camelot_key, rank, tempo from tracks group by camelot_key, tempo order by mode desc where user = user')
   rows = cursor.fetchall()
   uris= [row[0] for row in rows] #converts cursor query results to list
   for uri in uris:
