@@ -44,7 +44,7 @@ def post_playlist(environ):
  #get discover weekly track from api and use track ID to generate request for audio features.
  #audio features are stored in database table tracks
   cursor = con.cursor()
-  cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',(user))
+  cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',(user,))
   print (user)
   con.text_factory = str
   hrefquery = cursor.fetchone()
@@ -58,7 +58,7 @@ def post_playlist(environ):
     id = (track['track']['id'])
     resp = requests.get('https://api.spotify.com/v1/audio-features/'+ id, headers=headers)
     audiofeatures = json.loads(resp.text)
-    audiofeatures['user']=user 
+    audiofeatures['user']=user
     cursor.execute('insert into tracks (id, uri, danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo, user) '
              'Values(:id, :uri, :danceability, :energy, :key, :loudness, :mode,:speechiness, :acousticness, :instrumentalness, :liveness, :valence, :tempo, :user)',
              audiofeatures)
@@ -85,7 +85,7 @@ def post_playlist(environ):
    #use new playlist url to post tracks to new playlist.
   user = args['user'][0]
   con.text_factory = str #returns cursor results in string
-  cursor.execute ('select uri, camelot_key, rank, tempo from tracks where user = ? group by camelot_key, tempo order by mode desc',(user))
+  cursor.execute ('select uri, camelot_key, rank, tempo from tracks where user = ? group by camelot_key, tempo order by mode desc',(user,))
   rows = cursor.fetchall()
   uris= [row[0] for row in rows] #converts cursor query results to list
   for uri in uris:
@@ -102,8 +102,8 @@ def post_playlist(environ):
   print(newlistredirectbyte)
   return (newlistredirectbyte)
   user = args['user'][0]
-  cursor.execute ('delete from tracks where user = ?',(user))
-  cursor.execute ('delete from playlists where user = ?',(user))
+  cursor.execute ('delete from tracks where user = ?',(user,))
+  cursor.execute ('delete from playlists where user = ?',(user,))
   con.commit()
   con.close()
   sys.exit([0])
