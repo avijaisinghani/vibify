@@ -44,7 +44,7 @@ def post_playlist(environ):
  #get discover weekly track from api and use track ID to generate request for audio features.
  #audio features are stored in database table tracks
   cursor = con.cursor()
-  cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',user)
+  cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',(user))
   print (user)
   con.text_factory = str
   hrefquery = cursor.fetchone()
