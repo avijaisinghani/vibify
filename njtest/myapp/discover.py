@@ -41,15 +41,11 @@ def post_playlist(environ):
   #for list in playlists:
       #print(list)
 
-
-
-
-
- #get discover weekly tracks by from api and use track ID to generate request for audio features.
+ #get discover weekly track from api and use track ID to generate request for audio features.
  #audio features are stored in database table tracks
-#con = lite.connect ('spotify.db')
   cursor = con.cursor()
   cursor.execute('select href from playlists where name = "Discover Weekly" and user = user')
+  print (user)
   con.text_factory = str
   hrefquery = cursor.fetchone()
   url = (hrefquery[0])
@@ -89,7 +85,7 @@ def post_playlist(environ):
    #use new playlist url to post tracks to new playlist.
   user = args['user'][0]
   con.text_factory = str #returns cursor results in string
-  cursor.execute ('select uri, camelot_key, rank, tempo from tracks where user = user group by camelot_key, tempo order by mode desc')
+  cursor.execute ('select uri, camelot_key, rank, tempo from tracks where user = %s group by camelot_key, tempo order by mode desc',user)
   rows = cursor.fetchall()
   uris= [row[0] for row in rows] #converts cursor query results to list
   for uri in uris:
@@ -105,9 +101,9 @@ def post_playlist(environ):
   }
   print(newlistredirectbyte)
   return (newlistredirectbyte)
-  cursor = con.cursor()
-  cursor.execute('delete from tracks where user = user')
-  cursor.execute ('delete from playlists where user = user')
+  user = args['user'][0]
+  cursor.execute ('delete from tracks where user = %s',user)
+  cursor.execute ('delete from playlists where user = %s',user)
   con.commit()
   con.close()
   sys.exit([0])
