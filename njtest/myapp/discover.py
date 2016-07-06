@@ -13,7 +13,7 @@ spotify_api = 'TCLQLMNCNHHGKWDSI'
 
 
 
-def post_playlist(environ):
+def post_playlist(environ): 
   con = lite.connect ('spotify.db')
   cursor = con.cursor()
   #if not environ['QUERY_STRING']:
@@ -72,7 +72,7 @@ def post_playlist(environ):
 #create new playlist in spotify
   url = "https://api.spotify.com/v1/users/"+user+"/playlists"
   body = {
-   "name":"Hello World",
+   "name":"Vibify Weekly",
    "public": 'false'
   }
   resp=requests.post(url, headers=headers, data=json.dumps(body))
@@ -102,7 +102,7 @@ def post_playlist(environ):
   print(newlistredirectbyte)
   return (newlistredirectbyte)
   user = args['user'][0]
-  cursor.execute ('delete from tracks where user = ?',(user,))
+  cursor.execute ('delete from tracks where user = ?',user))
   cursor.execute ('delete from playlists where user = ?',(user,))
   con.commit()
   con.close()
