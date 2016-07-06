@@ -102,7 +102,7 @@ def post_playlist(environ):
   print(newlistredirectbyte)
   return (newlistredirectbyte)
   user = args['user'][0]
-  cursor.execute ('delete from tracks where user = ?',user))
+  cursor.execute ('delete from tracks where user = ?',(user,))
   cursor.execute ('delete from playlists where user = ?',(user,))
   con.commit()
   con.close()
