@@ -48,9 +48,6 @@
         margin-top:30%;
       }
 
-      #error{
-        margin-top:20px;
-      }
     </style>
   </head>
 
@@ -104,12 +101,12 @@
       </dl>
     </div>
     </script>
-    <div id = "vibify-button" style="text-align:center; display:none;">
+    <div id = "vibify-button" style="text-align:center; display:none; margin-bottom:30px;">
    <button type="button" class="btn btn-success btn-lg" id="send-token" data-loading-text= "<span class='glyphicon-left glyphicon glyphicon-refresh spinning'></span> Vibing your List..."><i class="glyphicon glyphicon-play"></i> Play your Vibify Weekly</button>
     </div>
 
     <div class="alert alert-danger" role="alert" id="error" style="display:none; margin:auto; width:50%">
-    <strong>Woops!</strong> The vibes have been interrupted.Please try again later. 
+    <strong>Woops!</strong> The vibes have been interrupted. Please try again later. 
   </div>
 
     <div id = "how-it-works" style="display:block;">
@@ -178,7 +175,6 @@
                   $('#loggedin').show();
                   $('#vibify-button').show();
                   $('#how-it-works').hide();
-                  $('#error').hide();
 
                 }
             });
@@ -208,6 +204,7 @@
       document.getElementById('send-token').addEventListener('click', function() {
         var $btn = $(this);
           $btn.button('loading');
+          $('#error').hide();
         var user_id = document.getElementById('profile').innerHTML;
         $.ajax({
           url: 'http://54.172.52.156/discover',
