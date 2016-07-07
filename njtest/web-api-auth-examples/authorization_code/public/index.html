@@ -4,7 +4,7 @@
     <title>Vibify</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -214,9 +214,11 @@
             window.location.href=response;
           },
           error: function(xhr,ajaxOptions,thrownError) {
-            alert(xhr.status)
-            alert(thrownError);
+            $btn.button('reset')
             $('#error').show();
+            alert(xhr.status);
+            alert(thrownError);
+
           }
         });
 
