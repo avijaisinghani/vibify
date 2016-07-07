@@ -36,6 +36,10 @@
       .glyphicon-left {
           margin-right: 7px;
       }
+
+      ol li {
+        margin-bottom:8px;
+      }
     </style>
   </head>
 
@@ -90,9 +94,20 @@
     </div>
     </script>
     <div id = "vibify-button" style="text-align:center; display:none;">
-      <p style="color:white; font-size:13px; margin-bottom:30px;">Vibify reorders your Discover Weekly tracks into a new playlist so that you can spend more time vibing and less time skipping.</p>
    <button type="button" class="btn btn-success btn-lg" id="send-token" data-loading-text= "<span class='glyphicon-left glyphicon glyphicon-refresh spinning'></span> Vibing your List..."><i class="glyphicon glyphicon-play"></i> Play your Vibify Weekly</button>
     </div>
+    <div class="alert fade in" id="error" style="display:none;">
+    <button type="button" class="close">×</button>
+    Woops! The vibes have been interrupted. We're working on restoring your session
+</div>
+    <div id = "how-it-works" style="display:block;">
+      <p class="text-uppercase">how it works</p>
+      <ol>
+        <li>Your Discover Weekly tracks are rearranged for optimum vibes</li>
+        <li>A new Vibify Weekly list is added to your library</li>
+        <li>You vibe and never skip a track</li>
+      </ol>
+      </div>
    
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
@@ -150,6 +165,7 @@
 
                   $('#loggedin').show();
                   $('#vibify-button').show();
+                  $('#how-it-works').hide();
 
                 }
             });
@@ -193,6 +209,7 @@
           error: function(xhr,ajaxOptions,thrownError) {
             alert(xhr.status)
             alert(thrownError);
+            $('#error').show();
           }
         });
 
