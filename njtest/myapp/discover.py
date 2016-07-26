@@ -2,6 +2,7 @@ import requests
 import json
 import sqlite3 as lite
 import sys
+import time
 import re
 import urllib
 
@@ -72,7 +73,7 @@ def post_playlist(environ):
 #create new playlist in spotify
   url = "https://api.spotify.com/v1/users/"+user+"/playlists"
   body = {
-   "name":"Vibify Weekly",
+   "name":"Vibify Weekly" + ,
    "public": 'false'
   }
   resp=requests.post(url, headers=headers, data=json.dumps(body))
@@ -96,14 +97,14 @@ def post_playlist(environ):
        #print (response2)
   #print(tracklist)
   #print(rows)
+  cursor.execute ('delete from tracks where user = ?',(user,))
+  cursor.execute ('delete from playlists where user = ?',(user,))
   location_json = {
     'location': newlistredirect
   }
   print(newlistredirectbyte)
   return (newlistredirectbyte)
   user = args['user'][0]
-  cursor.execute ('delete from tracks where user = ?',(user,))
-  cursor.execute ('delete from playlists where user = ?',(user,))
   con.commit()
   con.close()
   sys.exit([0])
