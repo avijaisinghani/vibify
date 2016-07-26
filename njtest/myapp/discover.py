@@ -97,12 +97,12 @@ def post_playlist(environ):
        #print (response2)
   #print(tracklist)
   #print(rows)
-  cursor.execute ('delete from tracks where user = ?',(user,))
-  cursor.execute ('delete from playlists where user = ?',(user,))
   location_json = {
     'location': newlistredirect
   }
   print(newlistredirectbyte)
+  cursor.execute ('delete from tracks where user = ?',(user,))
+  cursor.execute ('delete from playlists where user = ?',(user,))
   return (newlistredirectbyte)
   user = args['user'][0]
   con.commit()
