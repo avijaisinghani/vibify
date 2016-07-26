@@ -2,7 +2,6 @@ import requests
 import json
 import sqlite3 as lite
 import sys
-import time
 import re
 import urllib
 
@@ -73,7 +72,7 @@ def post_playlist(environ):
 #create new playlist in spotify
   url = "https://api.spotify.com/v1/users/"+user+"/playlists"
   body = {
-   "name":"Vibify Weekly" + ,
+   "name":"Vibify Weekly",
    "public": 'false'
   }
   resp=requests.post(url, headers=headers, data=json.dumps(body))
