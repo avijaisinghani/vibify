@@ -28,7 +28,6 @@ def post_playlist(environ):
   getlist = "https://api.spotify.com/v1/users/"+ user +"/playlists"
   resp = requests.get (getlist, headers=headers)
   data = json.loads(resp.text)
-  print(data)
   gettracks = []
   for item in data['items']:
       gettracks.append([user, item['name'],item['owner']['id'],item['tracks']['href']])
