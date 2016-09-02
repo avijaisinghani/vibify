@@ -50,7 +50,7 @@ app.get('/login', function(req, res) {
       response_type: 'code',
       client_id: client_id,
       scope: scope,
-      redirect_uri: redirect_uri,
+      redirect_uri: 'http://vibify.in/callback/',
       state: state
     }));
 });
