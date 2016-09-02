@@ -13,7 +13,7 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
 var client_id = '73aad25be6644dbcb85513ac3a9e3bd2'; // Your client id
-var client_secret = 'eb2d70942809440ca4914bddf66c98d2'; // Your client secret
+var client_secret = '1b6f8d31adab47c4adeefd0e76980f98'; // Your client secret
 var redirect_uri = 'http://vibify.in/callback/'; // Your redirect uri
 
 /**
