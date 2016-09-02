@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '73aad25be6644dbcb85513ac3a9e3bd2'; // Your client id
 var client_secret = 'eb2d70942809440ca4914bddf66c98d2'; // Your client secret
-var redirect_uri = 'http://vibify.in/callback'; // Your redirect uri
+var redirect_uri = 'http://vibify.in/callback/'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
