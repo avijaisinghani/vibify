@@ -46,7 +46,7 @@ def post_playlist(environ):
   cursor = con.cursor()
   cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',(user,))
   print (user)
-  weekNumber = date.today().isocalendar()[1]
+  weekNumber = str(date.today().isocalendar()[1])
   con.text_factory = str
   hrefquery = cursor.fetchone()
   url = (hrefquery[0])
