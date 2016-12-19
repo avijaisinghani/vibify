@@ -4,6 +4,7 @@ import sqlite3 as lite
 import sys
 import re
 import urllib
+from datetime import date
 
 spotify_api = 'TCLQLMNCNHHGKWDSI'
 # access_token = "BQAmGRxb2r_GYnnb7x-_NGbNsyu2M8q1LgsMgXa62vgm2MSYNlBfRTMOecvrg30FfktzNfpKpOaGkhlPx6UVxLF-qdfNizIumvM1IeczQ6kYcWXZSLvqK5LnyZR4bsOCkgP3ElhuOqfcRUolJwAgPNl6o2cV32yIxhhdKqZdzJhfGC2mY2PpsxJkexsjt2j8FCjGQm47bnUMjyOSracnkFOa5ALUO56bHke8a507EsqrzE4wM-Giz0etX22DQ30fmff5ylJv"
@@ -45,6 +46,7 @@ def post_playlist(environ):
   cursor = con.cursor()
   cursor.execute('select href from playlists where name = "Discover Weekly" and user = ?',(user,))
   print (user)
+  weekNumber = date.today().isocalendar()[1]
   con.text_factory = str
   hrefquery = cursor.fetchone()
   url = (hrefquery[0])
@@ -71,7 +73,7 @@ def post_playlist(environ):
 #create new playlist in spotify
   url = "https://api.spotify.com/v1/users/"+user+"/playlists"
   body = {
-   "name":"Vibify Weekly",
+   "name":"Vibify Weekly "weekNumber,
    "public": 'false'
   }
   resp=requests.post(url, headers=headers, data=json.dumps(body))
