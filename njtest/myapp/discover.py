@@ -73,7 +73,7 @@ def post_playlist(environ):
 #create new playlist in spotify
   url = "https://api.spotify.com/v1/users/"+user+"/playlists"
   body = {
-   "name":"Vibify Weekly "weekNumber,
+   "name":"Vibify Weekly "+weekNumber,
    "public": 'false'
   }
   resp=requests.post(url, headers=headers, data=json.dumps(body))
