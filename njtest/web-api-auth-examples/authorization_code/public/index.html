@@ -113,6 +113,9 @@
     </script>
     <div id = "vibify-button" style="text-align:center; display:none; margin-bottom:30px;">
    <button type="button" class="btn btn-success btn-lg" id="send-token" data-loading-text= "<span class='glyphicon-left glyphicon glyphicon-refresh spinning'></span> Vibing your List..."><i class="glyphicon glyphicon-play"></i> Play your Vibify Weekly</button>
+    <div class="playlists">
+       <a href="#" onClick="getSuccessOutput()">Select a different playlist</a>
+    </div>
     </div>
 
     <div class="alert alert-danger" role="alert" id="error" style="display:none; margin:auto; width:50%">
@@ -229,7 +232,25 @@
       }, false);
 
       })();
-
+    function getSuccessOutput() {
+   $.ajax({
+       url:'https://api.spotify.com/v1/users/'+{user}+'/playlists',
+    headers:{'Authorization': 'Bearer ' + access_token},
+       dataType:'json',
+       success: function (response) {
+           var h = '<select>';
+           response.items.forEach(function(item) {
+              h += '<option value="' + item.tracks.href + '">' + item.name + '</option>'
+           });
+           h += '</select>'
+       console.log({h: h });
+           $('.playlists').html(h);
+       },
+       error: function () {
+           $('.playlists').html('Bummer: there was an error!');
+       },
+   });
+};
     </script>
 </html>
 
